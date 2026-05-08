@@ -1,30 +1,23 @@
 # Java Projects
 
-This repository contains a collection of Java-based projects.
+A collection of small Java application projects — built primarily as coursework / standalone exercises.
 
-## 📂 Project List
-  
-1. Blood Bank Management System
-2. Calendar Management System
-3. Time Table Scheduling System
+## Projects
 
-## 📄 Prerequisites
-To run these projects locally, you need:
-- **Java Development Kit (JDK)** installed (version 8 or higher recommended).
-- **IDE** like Eclipse, IntelliJ IDEA, or NetBeans for running and editing the code.
-- Basic understanding of Java programming.
+- **Blood Bank Management System** — donor / inventory / request management for a blood bank
+- **Calendar Management System** — date and event management utility
+- **Time Table Scheduling System** — class / slot scheduling with constraint handling
 
-## 🛠️ Setup Instructions
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/piyush-gambhir/java-projects.git
-   ```
-2. Open any of the projects in your preferred IDE.
-3. Compile and run the Java files as per the project's instructions.
+## Running
 
-## 🤝 Contributions
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/piyush-gambhir/java-projects/issues) for open issues or to suggest improvements.
+Each project is self-contained. Open it in your IDE (IntelliJ IDEA / Eclipse) or compile from the command line:
 
-## 📄 License
-This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+cd "Blood Bank Management System"
+javac *.java
+java Main
+```
 
+## License
+
+MIT
