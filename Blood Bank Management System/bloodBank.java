@@ -1,64 +1,64 @@
-/* 
 
-Problem Statement 
 
-Blood Bank management System: The aim of the project is to retrieve, process and store information related to donors and patients. The system inputs the details of patients (name, age, disease, doctor, admitted date, blood group required) and details of donors (name, age, blood group, any disease). There is a menu which has following choices:
-•	Adding record of patient
-•	Adding record of donor
-•	Search donor with existing blood group
-•	Search patient with name
-•	List of patients with blood group required and admitted date sorted in ascending order
 
-Definition of Done:
-1.	The donor is allotted to a patient only if both blood group matches. 
-2.	Above choices have to be implemented using functions
-3.	If the age of a donor is greater than 20, then only he is allowed to give blood otherwise display “invalid age”.
-4.	While assigning donor to patient, retrieve the list of patients who require blood with particular group. If there are more than one patient, then the patient with least admitted date is allotted blood.
 
-*/
 
-// importing the required built-in librarires
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.util.*;
 import java.io.*;
 
-// Custom Exception: InvalidInputException
+
 class InvalidInputException extends Exception {
     public InvalidInputException() {
         System.out.println("\nError: Invalid Input.");
     }
 }
 
-// Custom Exception: MinimumAgeException
+
 class MinimumAgeException extends Exception {
     public MinimumAgeException() {
         System.out.println("\nError: The Entered Age is Below Minimum Age.");
     }
 }
 
-// Custom Exception: RecordNotFoundException
+
 class RecordNotFoundException extends Exception {
     public RecordNotFoundException() {
         System.out.println("\nError: Record Not Found.");
     }
 }
 
-// Patient Class
+
 class patient {
 
-    private String name; // patient age
-    private int age; // patient age
-    private String disease; // patient disease
-    private String doctorName; // patient doctor's name
-    private String dateAdmitted = "YYYY-MM-DD"; // patient admitted date
-    private String bloodGroupRequired; // required blood group by the patient
+    private String name;
+    private int age;
+    private String disease;
+    private String doctorName;
+    private String dateAdmitted = "YYYY-MM-DD";
+    private String bloodGroupRequired;
 
-    // Empty constructor for patient class.
+
     public patient() {
 
     }
 
-    // Parameterized constructor for patient class.
-    // This construct is used for creating patient record.
+
+
     public patient(String Name, int Age, String Disease, String DoctorName, String DateAdmitted,
             String BloodGroupRequired) {
 
@@ -71,80 +71,80 @@ class patient {
 
     }
 
-    // Method setName()
-    // This method is used to set patient name.
+
+
     public void setName(String Name) {
         this.name = Name;
     }
 
-    // Method setAge()
-    // This method is used to set patient age.
+
+
     public void setAge(int Age) {
         this.age = Age;
     }
 
-    // Method setDisease()
-    // This method is used to set patient disease.
+
+
     public void setDisease(String Disease) {
         this.disease = Disease;
     }
 
-    // Method setDoctorName()
-    // This method is used to set patient doctor name.
+
+
     public void setDoctorName(String DoctorName) {
         this.doctorName = DoctorName;
     }
 
-    // Method setDateAdmitted()
-    // This method is used to set patient date admitted.
+
+
     public void setDateAdmitted(String DateAdmitted) {
         this.dateAdmitted = DateAdmitted;
     }
 
-    // Method setBloodGroup Required()
-    // This method is used to set patient blood group.
+
+
     public void setBloodGroupRequired(String BloodGroupRequired) {
         this.bloodGroupRequired = BloodGroupRequired;
     }
 
-    // Method getName()
-    // This method is used to fetch patient name.
+
+
     public String getName() {
         return this.name;
     }
 
-    // Method getAge()
-    // This method is used to fetch patient age.
+
+
     public int getAge() {
         return this.age;
     }
 
-    // Method getDisease()
-    // This method is used to fetch patient disease.
+
+
     public String getDisease() {
         return this.disease;
     }
 
-    // Method getDoctorName()
-    // This method is used to fetch patient doctor name.
+
+
     public String getDoctorName() {
         return this.doctorName;
     }
 
-    // Method getDateAdmitted()
-    // This method is used to fetch patient date admitted.
+
+
     public String getDateAdmitted() {
         return this.dateAdmitted;
     }
 
-    // Method getBloodGroup()
-    // This method is used to fetch patient blood group.
+
+
     public String getBloodGroupRequired() {
         return this.bloodGroupRequired;
     }
 
-    // Method display()
-    // This method displays patient record in structured view.
+
+
     public void display() {
         System.out.println("""
                 -------------------
@@ -160,16 +160,16 @@ class patient {
         System.out.println("Blood Group Required        :      " + this.bloodGroupRequired);
     }
 
-    // Method addPatientRecord()
-    // This method takes patient details such as name, age, disesase, doctor
-    // name,date admitted, blood group as input and create a record for donor.
+
+
+
     public void addPatientRecord() {
         Scanner sc = new Scanner(System.in);
 
         Boolean moreRecord = true;
 
-        // A infinite while loop to take patient record as input from the user until
-        // user wants to.
+
+
         while (moreRecord == true) {
             try {
                 System.out.println(
@@ -243,9 +243,9 @@ class patient {
         }
     }
 
-    // Method addPatientRecordToFile
-    // This method appends the patient record to the file "patient_record.txt" text
-    // file.
+
+
+
     public void addPatientRecordToFile() throws IOException {
 
         String outputText = this.getName() + "|" + this.getAge() + "|" + this.getDisease() + "|"
@@ -269,9 +269,9 @@ class patient {
         }
     }
 
-    // Method getRecordFromFile()
-    // This method fetch the patient records from the file "patient_records.txt" and
-    // add them to an ArrayList patient_records
+
+
+
     public ArrayList<patient> getPatientRecordFromFile() throws FileNotFoundException {
         File patientRecords = new File("patientRecords.txt");
         Scanner sc = new Scanner(patientRecords);
@@ -288,9 +288,9 @@ class patient {
         return patientList;
     }
 
-    // Method searchPatientWithName()
-    // This method takes name as input and then search for patient record with the
-    // enetered name and then displays the record if found.
+
+
+
     public void searchPatientWithName() {
         Scanner sc = new Scanner(System.in);
 
@@ -343,9 +343,9 @@ class patient {
         }
     }
 
-    // Method getpatientListAscendingOrder()
-    // This method sort the records in asscending order and the display all the
-    // records.
+
+
+
     public void getpatientListAscendingOrder() {
         Scanner sc = new Scanner(System.in);
 
@@ -396,8 +396,8 @@ class patient {
         }
     }
 
-    // Method getSuitableDonors()
-    // This method displays a list of suitable donors for the entered patient.
+
+
     public void getSuitableDonors() {
         Scanner sc = new Scanner(System.in);
 
@@ -474,8 +474,8 @@ class patient {
         }
     }
 
-    // Method getPatientsRequireEnteredBloodGroup()
-    // This method displays a list of patients that require the enetred blood group.
+
+
     public void getPatientsRequireEnteredBloodGroup() {
         Scanner sc = new Scanner(System.in);
 
@@ -522,22 +522,22 @@ class patient {
     }
 }
 
-// Donor Class
+
 
 class donor {
 
-    private String name; // Donor Name
-    private int age; // Donor Age
-    private String anyDisease; // Donor Suffering From Any Disease
-    private String bloodGroup; // Donor Blood Group
+    private String name;
+    private int age;
+    private String anyDisease;
+    private String bloodGroup;
 
-    // Empty constructor for Donor class.
+
     public donor() {
 
     }
 
-    // Parameterized constructor for Donor Class
-    // This constructor is used for creating donor records.
+
+
     public donor(String Name, int Age, String AnyDisease, String BloodGroup) {
         setName(Name);
         setAge(Age);
@@ -545,56 +545,56 @@ class donor {
         setBloodGroup(BloodGroup);
     }
 
-    // Method setName()
-    // This method is used to set donor name.
+
+
     public void setName(String Name) {
         this.name = Name;
     }
 
-    // Method setAge()
-    // This method is used to set donor age.
+
+
     public void setAge(int Age) {
         this.age = Age;
     }
 
-    // Method setAnyDisease()
-    // This method is used to set donor suffering from any disease.
+
+
     public void setAnyDisease(String AnyDisease) {
         this.anyDisease = AnyDisease;
     }
 
-    // Method setBloodGroup()
-    // This method is used to set donor Blood.
+
+
     public void setBloodGroup(String BloodGroup) {
         this.bloodGroup = BloodGroup;
     }
 
-    // Method getName()
-    // This method is used to fetch donor name.
+
+
     public String getName() {
         return this.name;
     }
 
-    // Method getAge()
-    // This method is used to fetch donor age.
+
+
     public int getAge() {
         return this.age;
     }
 
-    // Method getAnyDisease()
-    // This method is used to fetch donor suffering any_disease.
+
+
     public String getAnyDisease() {
         return this.anyDisease;
     }
 
-    // Method getBloodGroup()
-    // This method is used to fetch donor blood group.
+
+
     public String getBloodGroup() {
         return this.bloodGroup;
     }
 
-    // Method Display()
-    // This method displays donor record in structured view.
+
+
     public void display() {
         System.out.println("""
                 -------------------
@@ -609,9 +609,9 @@ class donor {
 
     }
 
-    // Method addDonorRecord()
-    // This function takes donor details such as name, age, any disesase, blood
-    // group as input and create a record for donor.
+
+
+
     public void addDonorRecord() {
         Scanner sc = new Scanner(System.in);
         Boolean moreRecord = true;
@@ -693,9 +693,9 @@ class donor {
 
     }
 
-    // Method addDonorRecordToFile()
-    // This method appends the donor record to the file "donorRecords.txt" text
-    // file.
+
+
+
     public void addDonorRecordToFile() throws IOException {
         String outputText = this.getName() + "|" + this.getAge() + "|" + this.getAnyDisease() + "|"
                 + this.getBloodGroup();
@@ -722,9 +722,9 @@ class donor {
         }
     }
 
-    // Method getDonorRecordFromFile()
-    // This method fetch the donor records from the file "donor_records.txt" and
-    // add them to an ArrayList donor_records
+
+
+
     public ArrayList<donor> getDonorRecordFromFile() throws FileNotFoundException {
         File donorRecords = new File("donorRecords.txt");
         Scanner sc = new Scanner(donorRecords);
@@ -741,9 +741,9 @@ class donor {
         return donorList;
     }
 
-    // Method searchDonorWithBloodGroup
-    // This function takes blood group as input and then search for donors with the
-    // enetered blood group.
+
+
+
     public void searchDonorWithBloodGroup() {
         Scanner sc = new Scanner(System.in);
 
@@ -788,9 +788,9 @@ class donor {
         }
     }
 
-    // Method getDonorListAscendingOrder()
-    // This method sort the records in asscending order and the display all the
-    // records.
+
+
+
     public void getDonorListAscendingOrder() {
         Scanner sc = new Scanner(System.in);
 
@@ -843,25 +843,25 @@ class donor {
     }
 }
 
-// Main Class
-// Class bloodBank
+
+
 public class bloodBank {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        patient patientDriver = new patient(); // Patient object patientDriver to call Patient class methods.
-        donor donorDriver = new donor(); // Donor object donorDriver to call Donor class methods.
+        patient patientDriver = new patient();
+        donor donorDriver = new donor();
 
         Boolean runAgain = true;
 
-        // An infinite while loop to run the driver menu until user wants to exit.
+
         while (runAgain == true) {
 
-            /*
-             * Driver Menu
-             */
+
+
+
 
             System.out.println("""
 
@@ -889,47 +889,47 @@ public class bloodBank {
                 System.out.print("Enter Your Choice: ");
                 int user_choice = sc.nextInt();
 
-                // Using switch case to run the menu
+
                 switch (user_choice) {
 
-                    case 1: // Add patient Record
+                    case 1:
                         patientDriver.addPatientRecord();
                         break;
 
-                    case 2: // Add Donor Record
+                    case 2:
                         donorDriver.addDonorRecord();
                         break;
 
-                    case 3: // Search Donor With Blood Group
+                    case 3:
                         donorDriver.searchDonorWithBloodGroup();
                         break;
 
-                    case 4: // Search Patient With Name
+                    case 4:
                         patientDriver.searchPatientWithName();
                         break;
 
-                    case 5: // Get List of Patients With Blood Group Required And Admitted Date Sorted in
-                            // Asscending Order
+                    case 5:
+
                         patientDriver.getpatientListAscendingOrder();
                         break;
 
-                    case 6: // Get List of of Donors Sorted in Asscending Order
+                    case 6:
                         donorDriver.getDonorListAscendingOrder();
                         break;
 
-                    case 7: // Get List of Suitable Donors For a Patient
+                    case 7:
                         patientDriver.getSuitableDonors();
                         break;
 
-                    case 8: // Get List of Patients That Requires the Entered Blood Group
+                    case 8:
                         patientDriver.getPatientsRequireEnteredBloodGroup();
                         break;
 
-                    case 9: // Exit The Program
+                    case 9:
                         runAgain = false;
                         break;
 
-                    default: // In Case of Invalid Input
+                    default:
                         System.out.println("Invalid Input! Enter a Valid Input.");
                         System.out.println("Try Again.");
                         break;
